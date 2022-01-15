@@ -6,7 +6,7 @@ import kotlin.js.Date
 /**
  * 指定したFPSで定期実行するタイマークラス
  */
-class Timer(private val fps: Int, private val callback: (timer: Timer) -> Unit) {
+class SystemTimer(private val fps: Int, private val callback: (timer: SystemTimer) -> Unit) {
 
     private var lastTime: Double = 0.0;
 

@@ -45,6 +45,7 @@ class GameRenderer(private val soyokaze: Soyokaze) {
         }
 
         soyokaze.sceneManager.globalScene.draw(background)
+        soyokaze.sceneManager.currentScene.draw(background)
 
     }
 

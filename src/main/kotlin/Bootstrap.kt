@@ -5,9 +5,10 @@ lateinit var soyokazeInstance: Soyokaze;
 /**
  * すべての処理の起点
  */
-fun main() {
+suspend fun main() {
 
     soyokazeInstance = Soyokaze()
+
     soyokazeInstance.init()
 
 }
