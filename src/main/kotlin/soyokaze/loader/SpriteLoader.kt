@@ -1,12 +1,10 @@
 package soyokaze.loader
 
-import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.jsonPrimitive
 import soyokaze.platform.browser.FetcherJSFetch
 
 class SpriteLoader {
 
-    @OptIn(ExperimentalSerializationApi::class)
     suspend fun load() {
 
         console.log("load")

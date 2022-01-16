@@ -6,6 +6,7 @@ import org.w3c.dom.CanvasRenderingContext2D
 import org.w3c.dom.HTMLCanvasElement
 import soyokaze.controller.Keyboard
 import soyokaze.loader.SpriteLoader
+import soyokaze.loader.WorldLoader
 import soyokaze.renderer.GameRenderer
 import soyokaze.scene.SceneManager
 import kotlin.math.round
@@ -28,6 +29,8 @@ class Soyokaze {
 
     private lateinit var spriteLoader: SpriteLoader
 
+    private lateinit var worldLoader: WorldLoader
+
 
     suspend fun init() {
 
@@ -44,6 +47,9 @@ class Soyokaze {
 
         spriteLoader = SpriteLoader()
         spriteLoader.load()
+
+        worldLoader = WorldLoader()
+        worldLoader.load()
 
         systemTimer = SystemTimer(30) {
 
