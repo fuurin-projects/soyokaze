@@ -3,7 +3,7 @@ package soyokaze.renderer
 import org.w3c.dom.CanvasRenderingContext2D
 import org.w3c.dom.Image
 import soyokaze.Soyokaze
-import soyokaze.renderer.map.MapTip
+import soyokaze.renderer.map.Icon
 import soyokaze.renderer.map.drawMapTip
 
 class GameRenderer(private val soyokaze: Soyokaze) {
@@ -12,7 +12,7 @@ class GameRenderer(private val soyokaze: Soyokaze) {
 
     private lateinit var sprite: Image
 
-    private lateinit var kusa: MapTip
+    private lateinit var kusa: Icon
 
     fun init(_background: CanvasRenderingContext2D) {
 
@@ -23,7 +23,7 @@ class GameRenderer(private val soyokaze: Soyokaze) {
         sprite = Image();
         sprite.src = "/gamedata/resources/sprite001.png";
 
-        kusa = MapTip(sprite, 0, 0, 16, 16)
+        kusa = Icon(sprite, 0, 0, 16, 16)
 
     }
 
