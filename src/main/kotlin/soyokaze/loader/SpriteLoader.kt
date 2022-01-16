@@ -1,28 +1,29 @@
 package soyokaze.loader
 
-import kotlinx.browser.window
-import soyokaze.await
-import soyokaze.keys
-import kotlin.js.Json
+import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.json.jsonPrimitive
+import soyokaze.platform.browser.FetcherJSFetch
 
 class SpriteLoader {
 
+    @OptIn(ExperimentalSerializationApi::class)
     suspend fun load() {
 
         console.log("load")
 
-        val loaders = window.fetch("/loader.json").then { it.json() }.then { res -> res }.await() as Json
-        val loadersLocation = loaders["sprite_loader"]
+        val fetcherJSFetch = FetcherJSFetch()
 
-        console.log(loadersLocation)
-        
-        val sprites: dynamic = window.fetch(loadersLocation).then { it.json() }.then { res -> res }.await()
+        val loaders = fetcherJSFetch.fetchJson("/loader.json")
+        val loadersLocation = loaders["sprite_loader"]!!.jsonPrimitive
+
+        console.log(loadersLocation.content)
+
+        val sprites = fetcherJSFetch.fetchJson(loadersLocation.content)
 
         console.log(sprites)
 
-        for (key in keys(sprites)) {
-            val spriteLocale = (sprites as Json).get(key)
-            console.log("ID: ${key}, Locale: ${spriteLocale}")
+        for (sprite in sprites) {
+            console.log("ID: ${sprite.key}, Locale: ${sprite.value}")
         }
 
     }
