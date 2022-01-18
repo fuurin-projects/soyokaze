@@ -3,8 +3,6 @@ package soyokaze.renderer
 import org.w3c.dom.CanvasRenderingContext2D
 import org.w3c.dom.Image
 import soyokaze.Soyokaze
-import soyokaze.renderer.map.Icon
-import soyokaze.renderer.map.drawMapTip
 
 class GameRenderer(private val soyokaze: Soyokaze) {
 
@@ -32,6 +30,7 @@ class GameRenderer(private val soyokaze: Soyokaze) {
         //削除
         background.clearRect(0.0, 0.0, background.canvas.width.toDouble(), background.canvas.height.toDouble())
 
+        /*
         for (x in 0 until RendererConst.width / RendererConst.imageScale) {
             for (y in 0 until RendererConst.height / RendererConst.imageScale) {
                 background.drawMapTip(
@@ -42,10 +41,12 @@ class GameRenderer(private val soyokaze: Soyokaze) {
                     RendererConst.imageScale.toDouble()
                 )
             }
-        }
+        }*/
 
-        soyokaze.sceneManager.globalScene.draw(background)
-        soyokaze.sceneManager.currentScene.draw(background)
+        soyokaze.sceneManager.currentScene.draw(soyokaze, background)
+
+        soyokaze.sceneManager.globalScene.draw(soyokaze, background)
+
 
     }
 

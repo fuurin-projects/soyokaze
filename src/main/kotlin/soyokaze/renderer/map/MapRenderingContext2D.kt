@@ -1,6 +1,7 @@
 package soyokaze.renderer.map
 
 import org.w3c.dom.CanvasRenderingContext2D
+import soyokaze.renderer.Icon
 
 fun CanvasRenderingContext2D.drawMapTip(icon: Icon, dx: Double, dy: Double, dw: Double, dh: Double) {
     drawImage(

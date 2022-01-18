@@ -1,12 +1,16 @@
 package soyokaze.loader
 
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.decodeFromJsonElement
 import kotlinx.serialization.json.jsonPrimitive
 import soyokaze.platform.browser.FetcherJSFetch
 import soyokaze.scene.World
 
 class WorldLoader {
 
-    suspend fun load() {
+    suspend fun load(): Map<String, World> {
+
+        console.log("load: WorldLoader")
 
         val fetcherJSFetch = FetcherJSFetch()
 
@@ -24,8 +28,18 @@ class WorldLoader {
         for (world in worlds) {
             console.log("ID: ${world.key}, Locale: ${world.value}")
 
-            worldList[world.key] = World(world.key)
+            val worldJson = fetcherJSFetch.fetchJson(world.value.jsonPrimitive.content)
+
+            worldList[world.key] = World(
+                name = worldJson["world_name"]!!.jsonPrimitive.content,
+                imageData = Json.decodeFromJsonElement<Array<Array<Int>>>(worldJson["image_data"]!!),
+                imageMapping = Json.decodeFromJsonElement<Map<Int, String>>(worldJson["image_mapping"]!!),
+            )
         }
+
+        console.log("loaded: WorldLoader")
+
+        return worldList
 
     }
 

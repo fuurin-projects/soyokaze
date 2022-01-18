@@ -2,6 +2,7 @@ package soyokaze.scene
 
 import org.w3c.dom.CanvasRenderingContext2D
 import org.w3c.dom.Image
+import soyokaze.Soyokaze
 import soyokaze.event.Hero
 
 /**
@@ -30,8 +31,8 @@ class GlobalScene : Scene {
 
     }
 
-    override fun draw(context: CanvasRenderingContext2D) {
-        super.draw(context)
+    override fun draw(soyokaze: Soyokaze, context: CanvasRenderingContext2D) {
+        super.draw(soyokaze, context)
 
         hero.drawImage(context, sprite)
 

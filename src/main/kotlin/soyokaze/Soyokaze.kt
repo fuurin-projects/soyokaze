@@ -5,10 +5,15 @@ import kotlinx.browser.window
 import org.w3c.dom.CanvasRenderingContext2D
 import org.w3c.dom.HTMLCanvasElement
 import soyokaze.controller.Keyboard
+import soyokaze.loader.IconLoader
+import soyokaze.loader.SceneLoader
 import soyokaze.loader.SpriteLoader
 import soyokaze.loader.WorldLoader
 import soyokaze.renderer.GameRenderer
+import soyokaze.renderer.IconManager
+import soyokaze.renderer.SpriteManager
 import soyokaze.scene.SceneManager
+import soyokaze.scene.world.WorldManager
 import kotlin.math.round
 
 /**
@@ -31,11 +36,29 @@ class Soyokaze {
 
     private lateinit var worldLoader: WorldLoader
 
+    private lateinit var sceneLoader: SceneLoader
+
+    private lateinit var iconLoader: IconLoader
+
+    lateinit var worldManager: WorldManager
+
+    lateinit var spriteManager: SpriteManager
+
+    lateinit var iconManager: IconManager
+
 
     suspend fun init() {
 
         sceneManager = SceneManager()
         sceneManager.init()
+
+        worldManager = WorldManager()
+
+        spriteManager = SpriteManager()
+        spriteManager.init()
+
+        iconManager = IconManager()
+        iconManager.init()
 
         keyboard = Keyboard()
 
@@ -46,10 +69,16 @@ class Soyokaze {
         gameRenderer.init(context)
 
         spriteLoader = SpriteLoader()
-        spriteLoader.load()
+        spriteManager.postInit(spriteLoader.load())
 
         worldLoader = WorldLoader()
-        worldLoader.load()
+        worldManager.postInit(worldLoader.load())
+
+        sceneLoader = SceneLoader()
+        sceneManager.postInit(sceneLoader.load())
+
+        iconLoader = IconLoader()
+        iconManager.postInit(iconLoader.load(spriteManager))
 
         systemTimer = SystemTimer(30) {
 
@@ -68,6 +97,9 @@ class Soyokaze {
         }, 200)
 
         console.log("init")
+
+        //読み込み完了
+        sceneManager.nextScene("start")
 
     }
 

@@ -1,4 +1,4 @@
-package soyokaze.renderer.map
+package soyokaze.renderer
 
 import org.w3c.dom.Image
 

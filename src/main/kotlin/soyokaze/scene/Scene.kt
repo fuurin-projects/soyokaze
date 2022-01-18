@@ -1,6 +1,7 @@
 package soyokaze.scene
 
 import org.w3c.dom.CanvasRenderingContext2D
+import soyokaze.Soyokaze
 
 interface Scene {
 
@@ -15,7 +16,7 @@ interface Scene {
 
     }
 
-    fun draw(context: CanvasRenderingContext2D) {
+    fun draw(soyokaze: Soyokaze, context: CanvasRenderingContext2D) {
 
     }
 

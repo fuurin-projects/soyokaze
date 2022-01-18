@@ -1,4 +1,6 @@
 {
   "sprite_loader": "/assets/sprite/meta.json",
-  "world_loader": "/data/world/meta.json"
+  "world_loader": "/data/world/meta.json",
+  "scene_loader": "/data/scene/meta.json",
+  "icon_loader": "/data/icon/meta.json"
 }
