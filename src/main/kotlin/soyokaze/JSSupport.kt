@@ -1,5 +1,6 @@
 package soyokaze
 
+import kotlinx.browser.window
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
@@ -16,3 +17,9 @@ suspend fun <T> Promise<T>.await(): T = suspendCoroutine { cont ->
  * JSネイティブのオブジェクトをforできるように
  */
 fun keys(json: dynamic) = js("Object").keys(json).unsafeCast<Array<String>>()
+
+fun sleep(timeOut: Int): Promise<dynamic> {
+
+    return Promise { resolve, _ -> window.setTimeout(resolve, timeOut) }
+
+}
