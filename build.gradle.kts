@@ -13,12 +13,12 @@ repositories {
 dependencies {
 
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
-    
+
     testImplementation(kotlin("test"))
 }
 
 kotlin {
-    js(IR) {
+    js(LEGACY) {
         binaries.executable()
         browser {
             commonWebpackConfig {
