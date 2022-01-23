@@ -2,11 +2,13 @@ package soyokaze.loader
 
 import kotlinx.serialization.json.jsonPrimitive
 import org.w3c.dom.Image
+import soyokaze.await
 import soyokaze.platform.browser.FetcherJSFetch
+import soyokaze.sleep
 
 class SpriteLoader {
 
-    suspend fun load(): Map<String, Image> {
+    suspend fun load(loadItem: (itemName: String, count: Int, maxCount: Int) -> Unit = { _, _, _ -> }): Map<String, Image> {
 
         console.log("load")
 
@@ -21,7 +23,13 @@ class SpriteLoader {
 
         console.log(sprites)
 
+        loadItem("", 0, sprites.size)
+
+        sleep(2000).await()
+
         val spriteList = mutableMapOf<String, Image>()
+
+        var count = 0;
 
         for (sprite in sprites) {
             console.log("ID: ${sprite.key}, Locale: ${sprite.value}")
@@ -30,6 +38,9 @@ class SpriteLoader {
             spriteImage.src = sprite.value.jsonPrimitive.content
             //sprite.src = "/gamedata/resources/sprite001.png";
             spriteList[sprite.key] = spriteImage
+
+            count++
+            loadItem(sprite.key, count, sprites.size)
 
         }
 

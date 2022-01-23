@@ -14,6 +14,8 @@ class SceneManager() {
         currentScene.start()
 
         globalScene.start()
+
+        sceneList["game_loading"] = SceneGameLoading()
     }
 
     fun postInit(sceneList: Map<String, Scene>) {

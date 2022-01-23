@@ -21,6 +21,8 @@ import kotlin.math.round
  */
 class Soyokaze {
 
+    val gameLoading: GameLoading = GameLoading()
+
     lateinit var sceneManager: SceneManager
         private set
 
@@ -68,18 +70,7 @@ class Soyokaze {
         val context: CanvasRenderingContext2D = scene.getContext("2d")!! as CanvasRenderingContext2D
         gameRenderer.init(context)
 
-        spriteLoader = SpriteLoader()
-        spriteManager.postInit(spriteLoader.load())
-
-        worldLoader = WorldLoader()
-        worldManager.postInit(worldLoader.load())
-
-        sceneLoader = SceneLoader()
-        sceneManager.postInit(sceneLoader.load())
-
-        iconLoader = IconLoader()
-        iconManager.postInit(iconLoader.load(spriteManager))
-
+        //各種タイマーのスタート
         systemTimer = SystemTimer(30) {
 
             sceneManager.tick()
@@ -96,7 +87,32 @@ class Soyokaze {
                 "TPS: ${round(systemTimer.lastFPS)}, FPS: ${round(animationTimer.lastFPS)}"
         }, 200)
 
+        //各種リソースのロード
+        sceneManager.nextScene("game_loading")
+
+        spriteLoader = SpriteLoader()
+        spriteManager.postInit(spriteLoader.load { itemName, count, maxCount ->
+
+            gameLoading.loadItem(
+                itemName = itemName,
+                count = count,
+                maxCount = maxCount
+            )
+
+        })
+
+        worldLoader = WorldLoader()
+        worldManager.postInit(worldLoader.load())
+
+        sceneLoader = SceneLoader()
+        sceneManager.postInit(sceneLoader.load())
+
+        iconLoader = IconLoader()
+        iconManager.postInit(iconLoader.load(spriteManager))
+
+
         console.log("init")
+
 
         //読み込み完了
         sceneManager.nextScene("start")
