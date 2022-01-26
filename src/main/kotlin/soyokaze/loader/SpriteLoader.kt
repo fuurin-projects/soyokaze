@@ -2,9 +2,7 @@ package soyokaze.loader
 
 import kotlinx.serialization.json.jsonPrimitive
 import org.w3c.dom.Image
-import soyokaze.await
 import soyokaze.platform.browser.FetcherJSFetch
-import soyokaze.sleep
 
 class SpriteLoader {
 
@@ -25,7 +23,7 @@ class SpriteLoader {
 
         loadItem("", 0, sprites.size)
 
-        sleep(2000).await()
+        //sleep(2000).await()
 
         val spriteList = mutableMapOf<String, Image>()
 

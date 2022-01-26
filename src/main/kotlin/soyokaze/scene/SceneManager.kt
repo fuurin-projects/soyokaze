@@ -1,9 +1,11 @@
 package soyokaze.scene
 
+import soyokaze.Soyokaze
+
 /**
  * それぞれの画面を管理するクラス
  */
-class SceneManager() {
+class SceneManager(private val soyokaze: Soyokaze) {
 
     private val sceneList = mutableMapOf<String, Scene>()
 
@@ -33,8 +35,8 @@ class SceneManager() {
 
     fun tick() {
 
-        globalScene.tick()
-        currentScene.tick()
+        globalScene.tick(soyokaze)
+        currentScene.tick(soyokaze)
 
     }
 

@@ -24,10 +24,18 @@ class GlobalScene : Scene {
 
     }
 
-    override fun tick() {
-        super.tick()
+    override fun tick(soyokaze: Soyokaze) {
+        super.tick(soyokaze)
 
         hero.update()
+
+        val eventGlobalList = soyokaze.eventManager.eventGlobalList
+
+        for (entry in eventGlobalList) {
+
+            entry.value.tick(soyokaze = soyokaze)
+
+        }
 
     }
 
@@ -35,6 +43,14 @@ class GlobalScene : Scene {
         super.draw(soyokaze, context)
 
         hero.drawImage(context, sprite)
+
+        val eventGlobalList = soyokaze.eventManager.eventGlobalList
+
+        for (entry in eventGlobalList) {
+
+            entry.value.drawImage(soyokaze = soyokaze, context = context)
+
+        }
 
 
     }

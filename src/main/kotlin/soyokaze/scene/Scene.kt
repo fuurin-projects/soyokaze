@@ -12,7 +12,7 @@ interface Scene {
     /**
      * 画面が表示されているとき呼ばれる
      */
-    fun tick() {
+    fun tick(soyokaze: Soyokaze) {
 
     }
 

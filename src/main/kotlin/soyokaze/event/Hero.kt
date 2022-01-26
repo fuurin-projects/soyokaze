@@ -2,7 +2,9 @@ package soyokaze.event
 
 import org.w3c.dom.CanvasRenderingContext2D
 import org.w3c.dom.Image
+import soyokaze.Soyokaze
 import soyokaze.controller.Keyboard
+import soyokaze.event.node.Node
 import soyokaze.renderer.RendererConst
 
 class Hero : Event {
@@ -30,6 +32,22 @@ class Hero : Event {
 
     }
 
+
+    override fun tick(soyokaze: Soyokaze) {
+    }
+
+    override fun drawImage(soyokaze: Soyokaze, context: CanvasRenderingContext2D) {
+        TODO("Not yet implemented")
+    }
+
+    override fun <T> setValue(key: String, value: T) {
+        TODO("Not yet implemented")
+    }
+
+    override fun getNode(id: String): Node? {
+        TODO("Not yet implemented")
+    }
+
     fun update() {
 
         if (keyboard.up) {
@@ -51,7 +69,7 @@ class Hero : Event {
 
 
         //Animation
-        val moveSize = 4
+        val moveSize = 4 // 次のアニメーションまでに必要なtick数
         if (keyboard.up || keyboard.down || keyboard.left || keyboard.right) {
             modeAnimationCount += 1
             if (modeAnimationCount == 4 * moveSize) {
@@ -83,5 +101,6 @@ class Hero : Event {
         )
 
     }
+
 
 }

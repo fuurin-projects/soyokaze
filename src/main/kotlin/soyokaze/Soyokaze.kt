@@ -5,10 +5,8 @@ import kotlinx.browser.window
 import org.w3c.dom.CanvasRenderingContext2D
 import org.w3c.dom.HTMLCanvasElement
 import soyokaze.controller.Keyboard
-import soyokaze.loader.IconLoader
-import soyokaze.loader.SceneLoader
-import soyokaze.loader.SpriteLoader
-import soyokaze.loader.WorldLoader
+import soyokaze.event.EventManager
+import soyokaze.loader.*
 import soyokaze.renderer.GameRenderer
 import soyokaze.renderer.IconManager
 import soyokaze.renderer.SpriteManager
@@ -42,16 +40,20 @@ class Soyokaze {
 
     private lateinit var iconLoader: IconLoader
 
+    private lateinit var eventLoader: EventLoader
+
     lateinit var worldManager: WorldManager
 
     lateinit var spriteManager: SpriteManager
 
     lateinit var iconManager: IconManager
 
+    lateinit var eventManager: EventManager
+
 
     suspend fun init() {
 
-        sceneManager = SceneManager()
+        sceneManager = SceneManager(this)
         sceneManager.init()
 
         worldManager = WorldManager()
@@ -61,6 +63,8 @@ class Soyokaze {
 
         iconManager = IconManager()
         iconManager.init()
+
+        eventManager = EventManager()
 
         keyboard = Keyboard()
 
@@ -110,6 +114,8 @@ class Soyokaze {
         iconLoader = IconLoader()
         iconManager.postInit(iconLoader.load(spriteManager))
 
+        eventLoader = EventLoader()
+        eventManager.postInit(eventLoader.load())
 
         console.log("init")
 

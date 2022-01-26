@@ -1,0 +1,108 @@
+{
+  "name": "player",
+  "preference": {
+    "angle": "4",
+    "animation_count": "4"
+  },
+  "node_list": [
+    {
+      "id": "0",
+      "type": "input.controller",
+      "when": {
+        "type": "up"
+      },
+      "apply": {
+        "0": "-1"
+      }
+    },
+    {
+      "id": "1",
+      "type": "input.controller",
+      "when": {
+        "type": "down"
+      },
+      "apply": {
+        "0": "1"
+      }
+    },
+    {
+      "id": "2",
+      "type": "input.controller",
+      "when": {
+        "type": "left"
+      },
+      "apply": {
+        "0": "-1"
+      }
+    },
+    {
+      "id": "3",
+      "type": "input.controller",
+      "when": {
+        "type": "right"
+      },
+      "apply": {
+        "0": "1"
+      }
+    },
+    {
+      "id": "4",
+      "type": "input.controller",
+      "when": {
+        "type": "up_down_released"
+      },
+      "apply": {
+        "0": "-1"
+      }
+    },
+    {
+      "id": "5",
+      "type": "input.controller",
+      "when": {
+        "type": "left_right_released"
+      },
+      "apply": {
+        "0": "-1"
+      }
+    },
+    {
+      "id": "6",
+      "type": "output.event_state",
+      "input": [
+        {
+          "target_id": "0",
+          "target_value": "0"
+        },
+        {
+          "target_id": "1",
+          "target_value": "0"
+        }
+      ],
+      "apply": {
+        "state_id": "moveY"
+      }
+    },
+    {
+      "id": "7",
+      "type": "output.event_state",
+      "input": [
+        {
+          "target_id": "2",
+          "target_value": "0"
+        },
+        {
+          "target_id": "3",
+          "target_value": "0"
+        }
+      ],
+      "apply": {
+        "state_id": "moveX"
+      }
+    }
+  ],
+  "image_mapping": {
+    "front_001": "entity.shift.shift_front_001"
+  },
+  "state_image": {
+  }
+}

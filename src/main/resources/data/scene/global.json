@@ -1,0 +1,7 @@
+{
+  "name": "global",
+  "type": "global",
+  "event_list": [
+    "global.hero"
+  ]
+}

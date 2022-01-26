@@ -1,3 +1,4 @@
 {
+  "global": "/data/scene/global.json",
   "start": "/data/scene/start.json"
 }

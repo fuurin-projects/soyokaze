@@ -5,9 +5,5 @@ package soyokaze.scene
  */
 class InitScene : Scene {
 
-    override fun tick() {
-        super.tick()
-
-    }
 
 }
