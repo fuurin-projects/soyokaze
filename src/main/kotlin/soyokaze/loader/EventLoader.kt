@@ -104,7 +104,8 @@ class EventLoader {
                     inputNodeList = inputNode,
                     middleNodeList = middleNode,
                     outputNodeList = outputNode,
-                    imageMapping = eventJson.imageMapping
+                    imageMapping = eventJson.imageMapping,
+                    stateImage = eventJson.stateImage
                 )
 
         }

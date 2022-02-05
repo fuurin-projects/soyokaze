@@ -16,13 +16,19 @@ class DynamicEvent(
     val inputNodeList: List<InputNode>,
     val middleNodeList: List<MiddleNode>,
     val outputNodeList: List<OutputNode>,
-    val imageMapping: Map<String, String>
+    val imageMapping: Map<String, String>,
+    val stateImage: Map<String, String>
 ) : Event {
 
     private var posX: Double = 0.0
     private var posY: Double = 0.0
 
-    private var angle: Int = 0
+    private var angle: Int = 2
+
+    //歩行アニメーション用の処理
+    private val moveSize = 4 // 次のアニメーションまでに必要なtick数
+    private var modeAnimationCount = 0 //アニメーション用のカウントの値
+    private var modeAnimationPoint = 0 // 何枚目の画像を使うかの値
 
     private val values = mutableMapOf<String, Any>()
 
@@ -66,12 +72,52 @@ class DynamicEvent(
             outputNode.tick(soyokaze, this)
         }
 
+        //移動処理
         if (values[EventConst.MOVE_X] != null) {
             posX += values[EventConst.MOVE_X].toString().toDouble() * 2
         }
         if (values[EventConst.MOVE_Y] != null) {
             posY += values[EventConst.MOVE_Y].toString().toDouble() * 2
         }
+
+        var isMove = false
+
+        if (values[EventConst.MOVE_Y] != null) {
+
+            if (values[EventConst.MOVE_Y].toString().toInt() > 0) {
+                angle = 2
+                isMove = true
+            } else if (values[EventConst.MOVE_Y].toString().toInt() < 0) {
+                angle = 0
+                isMove = true
+            }
+
+        }
+
+        if (values[EventConst.MOVE_X] != null) {
+
+            if (values[EventConst.MOVE_X].toString().toInt() > 0) {
+                angle = 1
+                isMove = true
+            } else if (values[EventConst.MOVE_X].toString().toInt() < 0) {
+                angle = 3
+                isMove = true
+            }
+
+        }
+
+
+        //動いていたら歩行アニメーションを更新する
+        if (isMove) {
+            modeAnimationCount += 1
+            if (modeAnimationCount == 4 * moveSize) {
+                modeAnimationCount = 0
+            }
+        } else {
+            //はじめの一歩のアニメーションを確実にするためにアニメーションのしきい値の-1に設定する
+            modeAnimationCount = moveSize - 1
+        }
+        modeAnimationPoint = modeAnimationCount / moveSize
 
     }
 
@@ -85,13 +131,17 @@ class DynamicEvent(
         context.stroke()
         context.restore()
 
-        if (image != "") {
+        if (stateImage.isEmpty().not()) {
             context.drawMapTip(
-                soyokaze.iconManager.iconList[imageMapping[image]]!!,
+                soyokaze.iconManager.iconList[imageMapping[stateImage.get(getStateImageString())]]!!,
                 posX, posY, RendererConst.imageScale.toDouble(), RendererConst.imageScale.toDouble()
             )
         }
 
+    }
+
+    fun getStateImageString(): String {
+        return "${angle}_${modeAnimationPoint}"
     }
 
 

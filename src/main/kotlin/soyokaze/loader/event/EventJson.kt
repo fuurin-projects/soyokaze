@@ -19,7 +19,10 @@ data class EventJson(
     val nodeList: List<EventNode>,
 
     @SerialName("image_mapping")
-    val imageMapping: Map<String, String>
+    val imageMapping: Map<String, String>,
+
+    @SerialName("state_image")
+    val stateImage: Map<String, String>
 )
 
 @Serializable

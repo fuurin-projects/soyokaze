@@ -5,7 +5,6 @@ import org.w3c.dom.Image
 import soyokaze.Soyokaze
 import soyokaze.controller.Keyboard
 import soyokaze.event.node.Node
-import soyokaze.renderer.RendererConst
 
 class Hero : Event {
 
@@ -94,11 +93,11 @@ class Hero : Event {
 
     fun drawImage(context: CanvasRenderingContext2D, sprite: Image) {
 
-        context.drawImage(
-            sprite,
-            16.0 * modeAnimationPoint, 16.0 * (angle + 1), 16.0, 16.0,
-            posX, posY, RendererConst.imageScale.toDouble(), RendererConst.imageScale.toDouble()
-        )
+//        context.drawImage(
+//            sprite,
+//            16.0 * modeAnimationPoint, 16.0 * (angle + 1), 16.0, 16.0,
+//            posX, posY, RendererConst.imageScale.toDouble(), RendererConst.imageScale.toDouble()
+//        )
 
     }
 

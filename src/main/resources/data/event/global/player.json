@@ -101,8 +101,39 @@
     }
   ],
   "image_mapping": {
-    "front_001": "entity.shift.shift_front_001"
+    "front_001": "entity.shift.shift_front_001",
+    "front_002": "entity.shift.shift_front_002",
+    "front_003": "entity.shift.shift_front_003",
+    "front_004": "entity.shift.shift_front_004",
+    "back_001": "entity.shift.shift_back_001",
+    "back_002": "entity.shift.shift_back_002",
+    "back_003": "entity.shift.shift_back_003",
+    "back_004": "entity.shift.shift_back_004",
+    "right_001": "entity.shift.shift_right_001",
+    "right_002": "entity.shift.shift_right_002",
+    "right_003": "entity.shift.shift_right_003",
+    "right_004": "entity.shift.shift_right_004",
+    "left_001": "entity.shift.shift_left_001",
+    "left_002": "entity.shift.shift_left_002",
+    "left_003": "entity.shift.shift_left_003",
+    "left_004": "entity.shift.shift_left_004"
   },
   "state_image": {
+    "0_0": "back_001",
+    "0_1": "back_002",
+    "0_2": "back_003",
+    "0_3": "back_004",
+    "1_0": "right_001",
+    "1_1": "right_002",
+    "1_2": "right_003",
+    "1_3": "right_004",
+    "2_0": "front_001",
+    "2_1": "front_002",
+    "2_2": "front_003",
+    "2_3": "front_004",
+    "3_0": "left_001",
+    "3_1": "left_002",
+    "3_2": "left_003",
+    "3_3": "left_004"
   }
 }
