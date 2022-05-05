@@ -1,6 +1,9 @@
 package soyokaze.loader
 
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.decodeFromJsonElement
 import kotlinx.serialization.json.jsonPrimitive
+import soyokaze.loader.data.IconMetaJson
 import soyokaze.loader.data.LoaderJson
 import soyokaze.platform.browser.FetcherJSFetch
 import soyokaze.renderer.Icon
@@ -17,16 +20,16 @@ class IconLoader {
 
         console.log(loadersLocation)
 
-        val icons = fetcherJSFetch.fetchJson(loadersLocation!!)
+        val icons: IconMetaJson = Json.decodeFromJsonElement(fetcherJSFetch.fetchJson(loadersLocation!!))
 
         console.log(icons)
 
         val iconList = mutableMapOf<String, Icon>()
 
-        for (icon in icons) {
+        for (icon in icons.iconRegistries) {
             console.log("ID: ${icon.key}, Locale: ${icon.value}")
 
-            val iconJson = fetcherJSFetch.fetchJson(icon.value.jsonPrimitive.content)
+            val iconJson = fetcherJSFetch.fetchJson(icon.value)
 
 
             val iconData = Icon(

@@ -1,19 +1,21 @@
 {
-  "kusa": "/data/icon/kusa.json",
-  "entity.shift.shift_front_001": "/data/icon/entity/shift/shift_front_001.json",
-  "entity.shift.shift_front_002": "/data/icon/entity/shift/shift_front_002.json",
-  "entity.shift.shift_front_003": "/data/icon/entity/shift/shift_front_003.json",
-  "entity.shift.shift_front_004": "/data/icon/entity/shift/shift_front_004.json",
-  "entity.shift.shift_back_001": "/data/icon/entity/shift/shift_back_001.json",
-  "entity.shift.shift_back_002": "/data/icon/entity/shift/shift_back_002.json",
-  "entity.shift.shift_back_003": "/data/icon/entity/shift/shift_back_003.json",
-  "entity.shift.shift_back_004": "/data/icon/entity/shift/shift_back_004.json",
-  "entity.shift.shift_right_001": "/data/icon/entity/shift/shift_right_001.json",
-  "entity.shift.shift_right_002": "/data/icon/entity/shift/shift_right_002.json",
-  "entity.shift.shift_right_003": "/data/icon/entity/shift/shift_right_003.json",
-  "entity.shift.shift_right_004": "/data/icon/entity/shift/shift_right_004.json",
-  "entity.shift.shift_left_001": "/data/icon/entity/shift/shift_left_001.json",
-  "entity.shift.shift_left_002": "/data/icon/entity/shift/shift_left_002.json",
-  "entity.shift.shift_left_003": "/data/icon/entity/shift/shift_left_003.json",
-  "entity.shift.shift_left_004": "/data/icon/entity/shift/shift_left_004.json"
+  "icon_registries": {
+    "kusa": "/data/icon/kusa.json",
+    "entity.shift.shift_front_001": "/data/icon/entity/shift/shift_front_001.json",
+    "entity.shift.shift_front_002": "/data/icon/entity/shift/shift_front_002.json",
+    "entity.shift.shift_front_003": "/data/icon/entity/shift/shift_front_003.json",
+    "entity.shift.shift_front_004": "/data/icon/entity/shift/shift_front_004.json",
+    "entity.shift.shift_back_001": "/data/icon/entity/shift/shift_back_001.json",
+    "entity.shift.shift_back_002": "/data/icon/entity/shift/shift_back_002.json",
+    "entity.shift.shift_back_003": "/data/icon/entity/shift/shift_back_003.json",
+    "entity.shift.shift_back_004": "/data/icon/entity/shift/shift_back_004.json",
+    "entity.shift.shift_right_001": "/data/icon/entity/shift/shift_right_001.json",
+    "entity.shift.shift_right_002": "/data/icon/entity/shift/shift_right_002.json",
+    "entity.shift.shift_right_003": "/data/icon/entity/shift/shift_right_003.json",
+    "entity.shift.shift_right_004": "/data/icon/entity/shift/shift_right_004.json",
+    "entity.shift.shift_left_001": "/data/icon/entity/shift/shift_left_001.json",
+    "entity.shift.shift_left_002": "/data/icon/entity/shift/shift_left_002.json",
+    "entity.shift.shift_left_003": "/data/icon/entity/shift/shift_left_003.json",
+    "entity.shift.shift_left_004": "/data/icon/entity/shift/shift_left_004.json"
+  }
 }

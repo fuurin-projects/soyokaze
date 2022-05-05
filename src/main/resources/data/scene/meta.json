@@ -1,4 +1,6 @@
 {
-  "global": "/data/scene/global.json",
-  "start": "/data/scene/start.json"
+  "scene_registries": {
+    "global": "/data/scene/global.json",
+    "start": "/data/scene/start.json"
+  }
 }

@@ -1,7 +1,10 @@
 package soyokaze.loader
 
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.decodeFromJsonElement
 import kotlinx.serialization.json.jsonPrimitive
 import soyokaze.loader.data.LoaderJson
+import soyokaze.loader.data.SceneMetaJson
 import soyokaze.platform.browser.FetcherJSFetch
 import soyokaze.scene.Scene
 import soyokaze.scene.SceneWorld
@@ -17,16 +20,16 @@ class SceneLoader {
 
         console.log(loadersLocation)
 
-        val scenes = fetcherJSFetch.fetchJson(loadersLocation!!)
+        val scenes: SceneMetaJson = Json.decodeFromJsonElement(fetcherJSFetch.fetchJson(loadersLocation!!))
 
         console.log(scenes)
 
         val sceneList = mutableMapOf<String, Scene>()
 
-        for (scene in scenes) {
+        for (scene in scenes.sceneRegistries) {
             console.log("ID: ${scene.key}, Locale: ${scene.value}")
 
-            val sceneJson = fetcherJSFetch.fetchJson(scene.value.jsonPrimitive.content)
+            val sceneJson = fetcherJSFetch.fetchJson(scene.value)
 
             if (sceneJson["type"]!!.jsonPrimitive.content == "world") {
                 sceneList[sceneJson["name"]!!.jsonPrimitive.content] =

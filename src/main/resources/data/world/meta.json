@@ -1,3 +1,5 @@
 {
-  "home": "/data/world/home.json"
+  "world_registries": {
+    "home": "/data/world/home.json"
+  }
 }

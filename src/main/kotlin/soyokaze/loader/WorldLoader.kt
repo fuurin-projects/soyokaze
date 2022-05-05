@@ -4,6 +4,7 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.decodeFromJsonElement
 import kotlinx.serialization.json.jsonPrimitive
 import soyokaze.loader.data.LoaderJson
+import soyokaze.loader.data.WorldMetaJson
 import soyokaze.platform.browser.FetcherJSFetch
 import soyokaze.scene.World
 
@@ -20,16 +21,16 @@ class WorldLoader {
 
         console.log(loadersLocation)
 
-        val worlds = fetcherJSFetch.fetchJson(loadersLocation!!)
+        val worlds: WorldMetaJson = Json.decodeFromJsonElement(fetcherJSFetch.fetchJson(loadersLocation!!))
 
         console.log(worlds)
 
         val worldList = mutableMapOf<String, World>()
 
-        for (world in worlds) {
+        for (world in worlds.worldRegistries) {
             console.log("ID: ${world.key}, Locale: ${world.value}")
 
-            val worldJson = fetcherJSFetch.fetchJson(world.value.jsonPrimitive.content)
+            val worldJson = fetcherJSFetch.fetchJson(world.value)
 
             worldList[world.key] = World(
                 name = worldJson["world_name"]!!.jsonPrimitive.content,
