@@ -1,6 +1,7 @@
 package soyokaze.loader
 
 import kotlinx.serialization.json.jsonPrimitive
+import soyokaze.loader.data.LoaderJson
 import soyokaze.platform.browser.FetcherJSFetch
 import soyokaze.renderer.Icon
 import soyokaze.renderer.SpriteManager
@@ -11,12 +12,12 @@ class IconLoader {
 
         val fetcherJSFetch = FetcherJSFetch()
 
-        val loaders = fetcherJSFetch.fetchJson("/loader.json")
-        val loadersLocation = loaders["icon_loader"]!!.jsonPrimitive
+        val loaders: LoaderJson = fetcherJSFetch.fetchLoaderJson("/loader.json")
+        val loadersLocation: String? = loaders.iconLoader
 
         console.log(loadersLocation)
 
-        val icons = fetcherJSFetch.fetchJson(loadersLocation.content)
+        val icons = fetcherJSFetch.fetchJson(loadersLocation!!)
 
         console.log(icons)
 

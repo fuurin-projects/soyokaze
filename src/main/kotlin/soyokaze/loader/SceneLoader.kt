@@ -1,6 +1,7 @@
 package soyokaze.loader
 
 import kotlinx.serialization.json.jsonPrimitive
+import soyokaze.loader.data.LoaderJson
 import soyokaze.platform.browser.FetcherJSFetch
 import soyokaze.scene.Scene
 import soyokaze.scene.SceneWorld
@@ -11,12 +12,12 @@ class SceneLoader {
 
         val fetcherJSFetch = FetcherJSFetch()
 
-        val loaders = fetcherJSFetch.fetchJson("/loader.json")
-        val loadersLocation = loaders["scene_loader"]!!.jsonPrimitive
+        val loaders: LoaderJson = fetcherJSFetch.fetchLoaderJson("/loader.json")
+        val loadersLocation: String? = loaders.sceneLoader
 
         console.log(loadersLocation)
 
-        val scenes = fetcherJSFetch.fetchJson(loadersLocation.content)
+        val scenes = fetcherJSFetch.fetchJson(loadersLocation!!)
 
         console.log(scenes)
 

@@ -12,6 +12,7 @@ import soyokaze.event.node.middle.MiddleNode
 import soyokaze.event.node.middle.NodeStateChange
 import soyokaze.event.node.output.OutputNode
 import soyokaze.event.node.output.OutputNodeEventState
+import soyokaze.loader.data.LoaderJson
 import soyokaze.loader.event.EventJson
 import soyokaze.platform.browser.FetcherJSFetch
 
@@ -22,12 +23,12 @@ class EventLoader {
 
         val fetcherJSFetch = FetcherJSFetch()
 
-        val loaders = fetcherJSFetch.fetchJson("/loader.json")
-        val loadersLocation = loaders["event_loader"]!!.jsonPrimitive
+        val loaders: LoaderJson = fetcherJSFetch.fetchLoaderJson("/loader.json")
+        val loadersLocation: String? = loaders.eventLoader
 
         console.log(loadersLocation)
 
-        val events = fetcherJSFetch.fetchJson(loadersLocation.content)
+        val events = fetcherJSFetch.fetchJson(loadersLocation!!)
 
         console.log(events)
 

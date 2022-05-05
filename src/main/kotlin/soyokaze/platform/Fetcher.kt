@@ -9,4 +9,5 @@ interface Fetcher {
 
     suspend fun fetchJson(url: String): JsonObject
 
+
 }

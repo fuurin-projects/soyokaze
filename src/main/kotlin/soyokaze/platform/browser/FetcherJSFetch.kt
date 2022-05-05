@@ -6,6 +6,7 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.decodeFromDynamic
 import soyokaze.await
+import soyokaze.loader.data.LoaderJson
 import soyokaze.platform.Fetcher
 
 /**
@@ -23,4 +24,15 @@ class FetcherJSFetch : Fetcher {
 
     }
 
+    @OptIn(ExperimentalSerializationApi::class)
+    suspend fun fetchLoaderJson(url: String): LoaderJson {
+
+        return window.fetch(url)
+            .then { it.json() }
+            .then { res -> Json.decodeFromDynamic<LoaderJson>(res) }
+            .await()
+
+    }
+
 }
+

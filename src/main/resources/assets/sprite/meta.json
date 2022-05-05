@@ -1,3 +1,5 @@
 {
-  "sprite001": "/assets/sprite/sprite001.png"
+  "sprite_registries": {
+    "sprite001": "/assets/sprite/sprite001.png"
+  }
 }
