@@ -337,3 +337,6 @@ gradle-app.setting
 **/build/
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,macos,intellij+all,kotlin,gradle,node
+
+
+!src/main/resources/data/icon/
